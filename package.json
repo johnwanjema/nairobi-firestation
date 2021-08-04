@@ -27,6 +27,11 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
         "admin-lte": "^3.0.0-alpha.2",
-        "chart.js": "^3.5.0"
+        "bootstrap-vue": "^2.21.2",
+        "chart.js": "^3.5.0",
+        "moment": "^2.29.1",
+        "sweetalert2": "^11.1.2",
+        "vform": "^2.1.1",
+        "vue-router": "^3.5.2"
     }
 }

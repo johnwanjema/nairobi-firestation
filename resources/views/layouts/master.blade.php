@@ -138,7 +138,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" id="app">
             @yield('content')
         </div>
         <!-- /.content-wrapper -->
@@ -159,7 +159,7 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <!-- <script src="js/app.js"></script>   -->
+    <script src="js/app.js"></script>  
     <!-- <script src="~chart.js/dist/chart.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
