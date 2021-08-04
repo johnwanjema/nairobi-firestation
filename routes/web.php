@@ -19,4 +19,24 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+
+Route::get('/', [
+    'as' => 'home',
+    function () {
+        return view('auth.login');
+    }
+]);
+
+Route::get('logout', [
+    'as' => 'logout',
+    function () {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+]);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
