@@ -28,8 +28,7 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>150</h3>
-
+                            <h3>10</h3>
                             <p>Fires reports</p>
                         </div>
                         <div class="icon">
@@ -42,7 +41,7 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>53</h3>
+                            <h3>5</h3>
 
                             <p>Special services</p>
                         </div>
@@ -56,7 +55,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>44</h3>
+                            <h3>7</h3>
 
                             <p>Fire Trucks</p>
                         </div>
@@ -70,7 +69,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>65</h3>
+                            <h3>15</h3>
 
                             <p>Staff</p>
                         </div>
@@ -96,13 +95,7 @@
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content p-0">
-                                <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
-                                    <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
+                                <canvas id="myChart" width="400" height="300"></canvas>
                             </div>
                         </div><!-- /.card-body -->
                     </div>
@@ -120,13 +113,7 @@
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content p-0">
-                                <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
-                                    <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
+                                <canvas id="Chart" width="400" height="300"></canvas>
                             </div>
                         </div><!-- /.card-body -->
                     </div>
@@ -139,3 +126,5 @@
     </section>
     <!-- /.content -->
 @endsection
+
+

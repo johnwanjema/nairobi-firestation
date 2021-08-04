@@ -99,10 +99,34 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="/home" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Control Centre
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/home" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Fires
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/home" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Staff
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/home" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Logout
                                 </p>
                             </a>
                         </li>
@@ -135,7 +159,78 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="js/app.js"></script>
+    <!-- <script src="js/app.js"></script>   -->
+    <!-- <script src="~chart.js/dist/chart.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'],
+                datasets: [{
+                    label: 'Fire per month',
+                    data: [12, 19, 3, 5, 2, 3, 5, 0, 0, 0, 0, 0],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        var ctx = document.getElementById('Chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Kibra', 'Langata', 'Kamukunji', 'Starehe', 'Mathare',],
+                datasets: [{
+                    label: 'Fire per month',
+                    data: [12, 19, 3, 5, 2],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+        });
+    </script>
 
 </body>
 
