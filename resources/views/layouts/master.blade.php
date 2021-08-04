@@ -8,7 +8,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="/css/app.css">
 
 </head>
 
@@ -159,7 +159,7 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="js/app.js"></script>  
+    <script src="/js/app.js"></script>  
     <!-- <script src="~chart.js/dist/chart.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
