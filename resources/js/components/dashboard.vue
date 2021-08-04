@@ -144,10 +144,16 @@ export default {
         }
     },
     methods:{
+        getFiresPerMonth(){
 
+        },
+        getFiresByLocation(){
+
+        },
     },
     created(){
-        
+        this.getFiresPerMonth();
+        this.getFiresByLocation();
     }
 }
 </script>

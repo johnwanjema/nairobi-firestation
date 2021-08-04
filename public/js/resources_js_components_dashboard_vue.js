@@ -155,8 +155,14 @@ __webpack_require__.r(__webpack_exports__);
       staff: 0
     };
   },
-  methods: {},
-  created: function created() {}
+  methods: {
+    getFiresPerMonth: function getFiresPerMonth() {},
+    getFiresByLocation: function getFiresByLocation() {}
+  },
+  created: function created() {
+    this.getFiresPerMonth();
+    this.getFiresByLocation();
+  }
 });
 
 /***/ }),
