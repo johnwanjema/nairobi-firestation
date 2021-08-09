@@ -97,7 +97,7 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="tab-content p-0">
-                                    <canvas id="myChart" width="400" height="300"></canvas>
+                                    <canvas id="fire-chart" width="400" height="300"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -116,7 +116,7 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="tab-content p-0">
-                                    <canvas id="Chart" width="400" height="300"></canvas>
+                                    <canvas id="location-chart" width="400" height="300"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -134,26 +134,105 @@
 </template>
 
 <script>
+import Chart from 'chart.js'
 export default {
-    data(){
-        return{
-            fires:0,
-            specialServices:0,
-            fireTrucks:0,
-            staff:0,
+    data() {
+        return {
+            fires: 0,
+            specialServices: 0,
+            fireTrucks: 0,
+            staff: 0,
         }
     },
-    methods:{
-        getFiresPerMonth(){
-
+    methods: {
+        getFiresPerMonth() {
+            var data = [12, 19, 3, 5, 2, 3, 5, 0, 0, 0, 0, 0];
+            var labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+            const data1 = {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{ // one line graph
+                        label: 'Fires Per Month',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }, ]
+                },
+                options: {
+                    responsive: true,
+                    lineTension: 1,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                padding: 25,
+                            }
+                        }]
+                    }
+                }
+            }
+            this.createChart('fire-chart', data1)
         },
-        getFiresByLocation(){
-
+        createChart(chartId, chartData) {
+            const ctx = document.getElementById(chartId);
+            const myChart = new Chart(ctx, {
+                type: chartData.type,
+                data: chartData.data,
+                options: chartData.options,
+            });
+        },
+        getFiresPerLocation() {
+            var data = [12, 19, 3, 5, 2, 3, 5, 0, 0, 0, 0, 0];
+            var labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+            const data1 = {
+                type: 'pie',
+                data: {
+                    labels: ['Kibra', 'Langata', 'Kamukunji', 'Starehe', 'Mathare', ],
+                    datasets: [{
+                        label: 'Fire per month',
+                        data: [12, 19, 3, 5, 2],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+            }
+            this.createChart('location-chart', data1)
         },
     },
-    created(){
+    mounted() {
         this.getFiresPerMonth();
-        this.getFiresByLocation();
+        this.getFiresPerLocation();
     }
 }
 </script>
