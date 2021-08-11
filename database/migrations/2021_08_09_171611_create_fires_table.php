@@ -15,12 +15,11 @@ class CreateFiresTable extends Migration
     {
         Schema::create('fires', function (Blueprint $table) {
             $table->id();
-            $table->string('DiscoveredBy')->nullable();
+            $table->string('discoveredBy')->nullable();
             $table->string('phoneNumber')->nullable();
             $table->string('Location')->nullable();
             $table->string('methodOfCalling')->nullable();
-            $table->tim('timeOfDiscovery')->nullable();
-
+            $table->time('timeOfDiscovery')->nullable();
             $table->timestamps();
         });
     }
