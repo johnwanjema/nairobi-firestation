@@ -118,6 +118,14 @@
                             <a href="/home" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
+                                    FS1
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/home" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
                                     Staff
                                 </p>
                             </a>
