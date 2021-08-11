@@ -24,5 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::apiResources([
         'fires' => 'FireController',
     ]);
-
+    
+    Route::get('dashboardStats', 'UserController@dashboardStats');
+    
 // });

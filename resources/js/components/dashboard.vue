@@ -30,7 +30,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>10</h3>
+                                <h3>{{fires}}</h3>
                                 <p>Fires reports</p>
                             </div>
                             <div class="icon">
@@ -229,10 +229,19 @@ export default {
             }
             this.createChart('location-chart', data1)
         },
+        getDashboardStats(){
+            axios.get('/api/dashboardStats').then(({ data }) => {
+                // console.log(data);
+                this.fires = data.data.fires;
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
     },
     mounted() {
         this.getFiresPerMonth();
         this.getFiresPerLocation();
+        this.getDashboardStats();
     }
 }
 </script>
