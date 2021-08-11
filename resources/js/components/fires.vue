@@ -104,11 +104,15 @@
                             <div class="modal-body">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Location </label>
-                                        <input required type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Location" />
+                                        <input v-model.trim="form.location" required type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Location" />
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">DiscoveredBy</label>
                                         <input required v-model.trim="form.discoveredBy" type="text" class="form-control" id="exampleInputPassword1" placeholder="DiscoverdBy" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Phone Number</label>
+                                        <input required v-model.trim="form.phoneNumber" type="text" class="form-control" id="exampleInputPassword1" placeholder="DiscoverdBy" />
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Method Of Calling</label>
@@ -116,7 +120,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Time Of Discovery</label>
-                                        <input required v-model.trim="form.time" type="time" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                        <input required v-model.trim="form.timeOfDiscovery" type="time" class="form-control" id="exampleInputPassword1" placeholder="Password" />
                                     </div>
                             </div>
                             <div class="modal-footer justify-content-between">
@@ -141,14 +145,16 @@ export default {
         return {
             currentPage: 1,
             perPage: 5,
-            fields: ['#', 'location', 'discoveredBy', 'methodOfCalling','time'],
+            fields: ['#', 'location', 'discoveredBy', 'methodOfCalling','timeOfDiscovery'],
             filter: null,
             filterOn: [],
             form: new Form({
                 id: '',
                 discoveredBy: '',
+                phoneNumber:'',
+                location:'',
                 methodOfCalling: '',
-                time: '',
+                timeOfDiscovery: '',
             }),
             editMode: false,
             totalRows: 1,
@@ -173,16 +179,18 @@ export default {
         },
         getFires() {
             axios.get('/api/fires').then(({ data }) => {
-                // console.log(data);
-                this.fires = data.data.all_units;
+                console.log(data);
+                this.fires = data.data;
             }).catch((error) => {
                 console.log(error);
             });
         },
         addFire(){
               this.form.post('/api/fires').then(({ data }) => {
-                console.log(data)
+                // console.log(data)
                 this.expenses = data.data;
+                $('#modal-default').modal('hide');
+                this.getFires();
             }).catch((error) => {
                 console.log(error);
             });

@@ -17,7 +17,7 @@ class CreateFiresTable extends Migration
             $table->id();
             $table->string('discoveredBy')->nullable();
             $table->string('phoneNumber')->nullable();
-            $table->string('Location')->nullable();
+            $table->string('location')->nullable();
             $table->string('methodOfCalling')->nullable();
             $table->time('timeOfDiscovery')->nullable();
             $table->timestamps();

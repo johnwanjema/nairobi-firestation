@@ -14,7 +14,8 @@ class FireController extends Controller
      */
     public function index()
     {
-        //
+        $fires = Fire::orderBy('created_at', 'DESC')->get();
+        return api_response(true, null, 200, 'success', 'successfully paginated fetched fires', $fires);
     }
 
     /**
@@ -35,7 +36,20 @@ class FireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            //   'unitId','amount','expenseName','notes'
+            $fire = new Fire();
+            $fire->discoveredBy = $request['discoveredBy'];
+            $fire->phoneNumber = $request['phoneNumber'];
+            $fire->Location = $request['location'];
+            $fire->methodOfCalling = $request['methodOfCalling'];
+            $fire->timeOfDiscovery = $request['timeOfDiscovery'];
+            $fire->save();
+
+            return api_response(true, null, 200, 'success', 'successfully saved fire', $fire);
+        } catch (\Exception $exception) {
+            return api_response(true, $exception->getMessage(), 200, 'error', 'error saving fire', null);
+        }
     }
 
     /**

@@ -148,19 +148,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       currentPage: 1,
       perPage: 5,
-      fields: ['#', 'location', 'discoveredBy', 'methodOfCalling', 'time'],
+      fields: ['#', 'location', 'discoveredBy', 'methodOfCalling', 'timeOfDiscovery'],
       filter: null,
       filterOn: [],
       form: new Form({
         id: '',
         discoveredBy: '',
+        phoneNumber: '',
+        location: '',
         methodOfCalling: '',
-        time: ''
+        timeOfDiscovery: ''
       }),
       editMode: false,
       totalRows: 1,
@@ -188,8 +194,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/fires').then(function (_ref) {
         var data = _ref.data;
-        // console.log(data);
-        _this.fires = data.data.all_units;
+        console.log(data);
+        _this.fires = data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -199,8 +205,11 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.post('/api/fires').then(function (_ref2) {
         var data = _ref2.data;
-        console.log(data);
+        // console.log(data)
         _this2.expenses = data.data;
+        $('#modal-default').modal('hide');
+
+        _this2.getFires();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -421,7 +430,46 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "modal-body" }, [
-                  _vm._m(3),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+                      _vm._v("Location ")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model.trim",
+                          value: _vm.form.location,
+                          expression: "form.location",
+                          modifiers: { trim: true }
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        required: "",
+                        type: "text",
+                        id: "exampleInputEmail1",
+                        placeholder: "Enter Location"
+                      },
+                      domProps: { value: _vm.form.location },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "location",
+                            $event.target.value.trim()
+                          )
+                        },
+                        blur: function($event) {
+                          return _vm.$forceUpdate()
+                        }
+                      }
+                    })
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "exampleInputPassword1" } }, [
@@ -454,6 +502,47 @@ var render = function() {
                           _vm.$set(
                             _vm.form,
                             "discoveredBy",
+                            $event.target.value.trim()
+                          )
+                        },
+                        blur: function($event) {
+                          return _vm.$forceUpdate()
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+                      _vm._v("Phone Number")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model.trim",
+                          value: _vm.form.phoneNumber,
+                          expression: "form.phoneNumber",
+                          modifiers: { trim: true }
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        required: "",
+                        type: "text",
+                        id: "exampleInputPassword1",
+                        placeholder: "DiscoverdBy"
+                      },
+                      domProps: { value: _vm.form.phoneNumber },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "phoneNumber",
                             $event.target.value.trim()
                           )
                         },
@@ -511,8 +600,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model.trim",
-                          value: _vm.form.time,
-                          expression: "form.time",
+                          value: _vm.form.timeOfDiscovery,
+                          expression: "form.timeOfDiscovery",
                           modifiers: { trim: true }
                         }
                       ],
@@ -523,13 +612,17 @@ var render = function() {
                         id: "exampleInputPassword1",
                         placeholder: "Password"
                       },
-                      domProps: { value: _vm.form.time },
+                      domProps: { value: _vm.form.timeOfDiscovery },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.form, "time", $event.target.value.trim())
+                          _vm.$set(
+                            _vm.form,
+                            "timeOfDiscovery",
+                            $event.target.value.trim()
+                          )
                         },
                         blur: function($event) {
                           return _vm.$forceUpdate()
@@ -539,7 +632,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(3)
               ]
             )
           ])
@@ -584,26 +677,6 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-        _vm._v("Location ")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          required: "",
-          type: "text",
-          id: "exampleInputEmail1",
-          placeholder: "Enter Location"
-        }
-      })
     ])
   },
   function() {

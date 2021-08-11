@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Fire extends Model
 {
     use HasFactory;
+
+    protected $fillable=['discoveredBy','phoneNumber','Location','methodOfCalling','timeOfDiscovery'];
 }
