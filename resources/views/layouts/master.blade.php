@@ -13,7 +13,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+    <div class="wrapper"  id="app">
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -99,37 +99,37 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="/home" class="nav-link">
+                            <router-link to="/home" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Control Centre
                                 </p>
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav-item">
-                            <a href="/home" class="nav-link">
+                            <router-link to="/home/fires" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Fires
                                 </p>
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav-item">
-                            <a href="/home" class="nav-link">
+                            <router-link to="/home/fs1" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     FS1
                                 </p>
-                            </a>
+                            </router-link>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/home" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Staff
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="/logout" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
@@ -146,7 +146,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" id="app">
+        <div class="content-wrapper">
             @yield('content')
         </div>
         <!-- /.content-wrapper -->
