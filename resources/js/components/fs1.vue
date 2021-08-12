@@ -53,7 +53,7 @@
                                                     <p> $ {{row.item.amount}}</p>
                                                 </template>
                                                 <template v-slot:cell(actions)="row">
-                                                    <b-button class="btn btn-sm" variant="primary" @click="openModal(row.item)"> Add FS1</b-button>
+                                                    <b-button class="btn btn-sm" variant="primary" @click="addFs1(row.item)"> Add FS1</b-button>
                                                 </template>
                                             </b-table>
                                         </div>
@@ -66,20 +66,20 @@
                 </div>
             </div>
             <!-- /.container-fluid -->
-             <div class="modal fade" id="modal-default">
-                <div class="modal-dialog">
+            <div class="modal fade" id="modal-lg">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Add FS1</h4>
+                            <h4 class="modal-title">Large Modal</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form @submit.prevent="addFire">
+                       <form @submit.prevent="addFire">
                             <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Location </label>
-                                        <input required type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Location" />
+                                        <label for="exampleInputEmail1">Location {{fire}} </label>
+                                        <input v-model="fire.location" required type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Location" />
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">DiscoveredBy</label>
@@ -100,8 +100,11 @@
                             </div>
                         </form>
                     </div>
+                    <!-- /.modal-content -->
                 </div>
+                <!-- /.modal-dialog -->
             </div>
+
           <!-- /.modal-content -->
         <!-- /.modal-dialog -->
         </section>
@@ -116,7 +119,7 @@ export default {
         return {
             currentPage: 1,
             perPage: 5,
-            fields: ['#', 'location', 'discoveredBy', 'methodOfCalling','time','actions'],
+            fields: ['#', 'location', 'discoveredBy', 'methodOfCalling','timeOfDiscovery','actions'],
             filter: null,
             filterOn: [],
             form: new Form({
@@ -127,7 +130,8 @@ export default {
             }),
             editMode: false,
             totalRows: 1,
-            fires: [{}]
+            fires: [],
+            fire:{}
         }
     },
     methods: {
@@ -137,29 +141,30 @@ export default {
             this.editMode = true;
             this.form.fill(expense)
         },
-        openModal() {
-            this.form.reset();
-            $('#modal-default').modal('show');
-            this.editMode = false;
+        addFs1(item) {
+            router.push({
+                name: "addFs1",
+                params: { fire: item, fireId :item.id }
+            })
         },
         onFiltered(filteredItems) {
             this.totalRows = filteredItems.length;
             this.currentPage = 1
         },
+        addFire(){
+            console.log('weqwe')
+        },
         getFires() {
             axios.get('/api/fires').then(({ data }) => {
                 // console.log(data);
-                this.fires = data.data.all_units;
+                this.fires = data.data;
             }).catch((error) => {
                 console.log(error);
             });
         },
-        addFire(){
-            console.log('weqwe')
-        }
     },
     created() {
-        // this.getFires();
+        this.getFires();
     }
 }
 </script>

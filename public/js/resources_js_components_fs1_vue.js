@@ -123,12 +123,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       currentPage: 1,
       perPage: 5,
-      fields: ['#', 'location', 'discoveredBy', 'methodOfCalling', 'time', 'actions'],
+      fields: ['#', 'location', 'discoveredBy', 'methodOfCalling', 'timeOfDiscovery', 'actions'],
       filter: null,
       filterOn: [],
       form: new Form({
@@ -139,7 +142,8 @@ __webpack_require__.r(__webpack_exports__);
       }),
       editMode: false,
       totalRows: 1,
-      fires: [{}]
+      fires: [],
+      fire: {}
     };
   },
   methods: {
@@ -149,14 +153,21 @@ __webpack_require__.r(__webpack_exports__);
       this.editMode = true;
       this.form.fill(expense);
     },
-    openModal: function openModal() {
-      this.form.reset();
-      $('#modal-default').modal('show');
-      this.editMode = false;
+    addFs1: function addFs1(item) {
+      router.push({
+        name: "addFs1",
+        params: {
+          fire: item,
+          fireId: item.id
+        }
+      });
     },
     onFiltered: function onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
+    },
+    addFire: function addFire() {
+      console.log('weqwe');
     },
     getFires: function getFires() {
       var _this = this;
@@ -164,16 +175,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/fires').then(function (_ref) {
         var data = _ref.data;
         // console.log(data);
-        _this.fires = data.data.all_units;
+        _this.fires = data.data;
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    addFire: function addFire() {
-      console.log('weqwe');
     }
   },
-  created: function created() {// this.getFires();
+  created: function created() {
+    this.getFires();
   }
 });
 
@@ -351,7 +360,7 @@ var render = function() {
                                         attrs: { variant: "primary" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.openModal(row.item)
+                                            return _vm.addFs1(row.item)
                                           }
                                         }
                                       },
@@ -374,8 +383,8 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "modal fade", attrs: { id: "modal-default" } }, [
-        _c("div", { staticClass: "modal-dialog" }, [
+      _c("div", { staticClass: "modal fade", attrs: { id: "modal-lg" } }, [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
             _vm._m(2),
             _vm._v(" "),
@@ -391,7 +400,38 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "modal-body" }, [
-                  _vm._m(3),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+                      _vm._v("Location " + _vm._s(_vm.fire) + " ")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.fire.location,
+                          expression: "fire.location"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        required: "",
+                        type: "text",
+                        id: "exampleInputEmail1",
+                        placeholder: "Enter Location"
+                      },
+                      domProps: { value: _vm.fire.location },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.fire, "location", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "exampleInputPassword1" } }, [
@@ -509,7 +549,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(3)
               ]
             )
           ])
@@ -540,7 +580,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Add FS1")]),
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Large Modal")]),
       _vm._v(" "),
       _c(
         "button",
@@ -554,26 +594,6 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-        _vm._v("Location ")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          required: "",
-          type: "text",
-          id: "exampleInputEmail1",
-          placeholder: "Enter Location"
-        }
-      })
     ])
   },
   function() {
