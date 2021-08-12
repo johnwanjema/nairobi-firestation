@@ -13,10 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/home/{any?}/{component?}', function () {
+    return view('home');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+
+Route::get('/', [
+    'as' => 'home',
+    function () {
+        return view('auth.login');
+    }
+]);
+
+Route::get('logout', [
+    'as' => 'logout',
+    function () {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+]);
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
